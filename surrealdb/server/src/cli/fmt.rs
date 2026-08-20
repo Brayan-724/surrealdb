@@ -56,7 +56,7 @@ pub async fn init(
 				ParsedLine::MultiComment(s) => output.push_str(&s),
 				ParsedLine::Whitespace => output.push('\n'),
 				ParsedLine::Statement => {
-					let parsed = parser.parse_statement(stk).await?;
+					let parsed = stk.run(|ctx| parser.parse_statement(ctx)).await?;
 					parser.eat(TokenKind::SemiColon);
 
 					carry_token = Token {
@@ -65,7 +65,6 @@ pub async fn init(
 					};
 
 					output += &parsed.to_sql_pretty();
-					output += ";";
 				}
 			}
 
