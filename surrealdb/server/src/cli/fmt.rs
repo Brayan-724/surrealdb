@@ -1,6 +1,7 @@
+use core::fmt::Write;
+
 use anyhow::Result;
 use clap::Args;
-use core::fmt::Write;
 use surrealdb_core::syn::lexer::Lexer;
 use surrealdb_core::syn::parse_with;
 use surrealdb_core::syn::parser::ParseResult;
@@ -147,7 +148,7 @@ fn parse_line(lexer: &mut Lexer) -> ParseResult<ParsedLine> {
 					lexer.eat(b'/');
 					lexer.eat(b'/');
 					lexer.advance_span();
-					return Ok(parse_single_line_comment(lexer));
+					Ok(parse_single_line_comment(lexer))
 				}
 				b"*" => {
 					lexer.eat(b'/');

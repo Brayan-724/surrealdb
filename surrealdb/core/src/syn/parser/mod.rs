@@ -433,7 +433,7 @@ impl<'a> Parser<'a> {
 	pub async fn parse_statement(&mut self, stk: &mut Stk) -> ParseResult<sql::Ast> {
 		let statement = self.parse_top_level_expr(stk).await?;
 		Ok(sql::Ast {
-			expressions: vec![statement]
+			expressions: vec![statement],
 		})
 	}
 

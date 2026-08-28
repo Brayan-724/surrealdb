@@ -75,7 +75,7 @@ impl<'a> Lexer<'a> {
 
 	/// Is the reader of this lexer at eof
 	pub fn is_eof(&self) -> bool {
-		self.reader.len() == 0
+		self.reader.is_empty()
 	}
 
 	/// Change the used source from the lexer to a new buffer.
